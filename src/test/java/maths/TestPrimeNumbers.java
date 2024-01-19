@@ -24,7 +24,7 @@ public class TestPrimeNumbers {
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15})
     void testPrimeNumbers(int num){
-        if(num == 4 || num == 6 || num == 8 || num == 9 || num == 10 || num == 12 || num == 14 || num == 15) {
+        if(num == 1 || num == 4 || num == 6 || num == 8 || num == 9 || num == 10 || num == 12 || num == 14 || num == 15) {
             assertFalse(primeNumber.isPrime(num));
         }else{
             assertTrue(primeNumber.isPrime(num));
@@ -51,4 +51,21 @@ public class TestPrimeNumbers {
                         37, 41, 43, 47))
         );
     }
+
+    @ParameterizedTest
+    @MethodSource("primePairsRangeProvider")
+    void testPrimePairsTwin(int range, PrimeNumber.PrimePairType primePairType, String expected){
+        var result = primeNumber.primePairs(range, primePairType);
+        assertEquals(expected, result);
+    }
+
+    static Stream<Arguments> primePairsRangeProvider(){
+        return Stream.of(
+                Arguments.of(50, PrimeNumber.PrimePairType.TWIN, "3=5, 5=7, 11=13, 17=19, 29=31, 41=43"),
+                Arguments.of(50, PrimeNumber.PrimePairType.COUSIN, "3=7, 7=11, 13=17, 19=23, 37=41, 43=47"),
+                Arguments.of(50, PrimeNumber.PrimePairType.SEXY, "5=11, 7=13, 11=17, 13=19, 17=23, 23=29, 31=37, 37=43, 41=47, 47=53")
+        );
+    }
+
+
 }
