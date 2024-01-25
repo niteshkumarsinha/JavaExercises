@@ -24,4 +24,11 @@ public class TestFibonacci {
         var res = Fibonacci.fibonacci(seq);
         assert res == expected;
     }
+
+    @ParameterizedTest
+    @CsvSource({"1,1", "1,2", "2,3", "3,4", "5,5", "8,6", "13,7", "21,8"})
+    void testFibonacciIter(int expected, int seq){
+        var res = Fibonacci.fibonacciIter(seq);
+        assert res == expected;
+    }
 }
