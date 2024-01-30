@@ -17,4 +17,12 @@ public class TestNoDuplicateChars {
         assertEquals(expected, result);
     }
 
+    @ParameterizedTest(name = "removeDuplicates({0}) => {1}")
+    @CsvSource({ "bananas, bans", "lalalamama, lam", "MICHAEL, MICHAEL" })
+    void testRemoveDuplicates(final String input, final String expected)
+    {
+        var result = new RemoveDuplicates().removeDuplicates(input);
+        assertEquals(expected, result);
+    }
+
 }
