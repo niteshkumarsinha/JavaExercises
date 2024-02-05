@@ -15,4 +15,21 @@ public class TestTennisScore {
         String result = TennisScore.tennisScore(score, "Micha", "Tim");
         assertEquals(expected, result);
     }
+
+    @ParameterizedTest(name = "''{0}'' => ''{1}''")
+    @CsvSource({ "1:0, Fifteen Love", "2:2, Thirty Thirty",
+            "3:2, Forty Thirty", "4:2, Game Micha" })
+    void calculateScoreWin(String score, String expected)
+    {
+        String result = TennisScore.tennisScore(score, "Micha", "Tim");
+        assertEquals(expected, result);
+    }
+    @ParameterizedTest(name = "''{0}'' => ''{1}''")
+    @CsvSource({ "1:0, Fifteen Love", "2:0, Thirty Love",
+            "3:0, Forty Love", "4:0, Game Micha"} )
+    void calculateScoreStraightWin(String score, String expected)
+    {
+        String result = TennisScore.tennisScore(score, "Micha", "Tim");
+        assertEquals(expected, result);
+    }
 }

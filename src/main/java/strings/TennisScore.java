@@ -11,24 +11,22 @@ public class TennisScore {
         String pointPlayer1 = getPoint(player1Score);
         String pointPlayer2 = getPoint(player2Score);
 
-        if(player1Score < 3 || player2Score < 3){
-            scoreString = String.format("%s %s", pointPlayer1, pointPlayer2);
-        }
+
         if(player1Score == player2Score && player1Score >= 3){
             scoreString = "Deuce";
         }
-        if(player1Score > 4 && player1Score - player2Score >= 2){
+        if(player1Score >= 4 && Math.abs(player1Score - player2Score) >= 2){
             scoreString = "Game " + player1;
-        }else if(player2Score > 4 && player2Score - player1Score >= 2){
+        }else if(player2Score >= 4 && Math.abs(player2Score - player1Score) >= 2){
             scoreString = "Game " + player2;
-        }
-
-        if(Math.abs(player1Score - player2Score) == 1 && player1Score >= 3 && player2Score >= 3){
+        }else if(Math.abs(player1Score - player2Score) == 1 && player1Score >= 3 && player2Score >= 3){
             if(player1Score > player2Score){
                 scoreString = "Advantage " + player1;
             }else {
                 scoreString = "Advantage " + player2;
             }
+        }else if(player1Score < 3 || player2Score < 3){
+            scoreString = String.format("%s %s", pointPlayer1, pointPlayer2);
         }
 
         return scoreString;
